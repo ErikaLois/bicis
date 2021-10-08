@@ -1,0 +1,6 @@
+import bicis.*
+import accesorios.*
+
+describe "Test de bicis con accesorios" {
+	
+}
