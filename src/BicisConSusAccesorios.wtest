@@ -2,5 +2,15 @@ import bicis.*
 import accesorios.*
 
 describe "Test de bicis con accesorios" {
+	var bici28 = new Bicicletas(rodado = 28, largo = 150, marca = "Olmo", accesorios = #{farolito})
 	
+	test "bicicleta rodado 28" {
+		assert.equals(85, bici28.altura())
+		assert.equals(34, bici28.velocidadDeCrucero())
+		assert.equals(0, bici28.carga())
+		assert.equals(14.5, bici28.peso())
+		assert.that(bici28.tieneLuz())
+		assert.equals(1, bici28.cantidadDeAccesoriosLivianos())
+	}
+	//var bici26 = new Bicicletas(rodado = 26, largo = 110, marca = "Legnano", accesorios = #{farolito, canasto( volumen = 8), morral(largo = 21, tieneOjoDeGato = true)})
 }
