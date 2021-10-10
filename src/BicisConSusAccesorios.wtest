@@ -2,9 +2,10 @@ import bicis.*
 import accesorios.*
 
 describe "Test de bicis con accesorios" {
-	var bici28 = new Bicicletas(rodado = 28, largo = 150, marca = "Olmo", accesorios = #{farolito})
 	
+
 	test "bicicleta rodado 28" {
+		var bici28 = new Bicicletas(rodado = 28, largo = 150, marca = "Olmo", accesorios = #{farolito})
 		assert.equals(85, bici28.altura())
 		assert.equals(34, bici28.velocidadDeCrucero())
 		assert.equals(0, bici28.carga())
@@ -12,5 +13,31 @@ describe "Test de bicis con accesorios" {
 		assert.that(bici28.tieneLuz())
 		assert.equals(1, bici28.cantidadDeAccesoriosLivianos())
 	}
-	//var bici26 = new Bicicletas(rodado = 26, largo = 110, marca = "Legnano", accesorios = #{farolito, canasto( volumen = 8), morral(largo = 21, tieneOjoDeGato = true)})
+	
+	test "bicicleta rodado 26" {
+		var bici26 = new Bicicletas(rodado = 26, largo = 110, marca = "Legnano", accesorios = #{farolito, canasto, morralDeBici})
+		canasto.volumen(8)
+		morralDeBici.largo(21)
+		morralDeBici.tieneOjoDeGato(true)
+		
+		assert.equals(80, bici26.altura())
+		assert.equals(28, bici26.velocidadDeCrucero())
+		assert.equals(23, bici26.carga())
+		assert.equals(15.5, bici26.peso())
+		assert.that(bici26.tieneLuz())
+		assert.equals(2, bici26.cantidadDeAccesoriosLivianos())
+	}
+	
+	test "bicicleta rodado 20" {
+		var bici20 = new Bicicletas(rodado = 20, largo = 90, marca = "Legnano", accesorios = #{morralDeBici})
+		morralDeBici.largo(6)
+		morralDeBici.tieneOjoDeGato(false)
+		
+		assert.equals(65, bici20.altura())
+		assert.equals(22, bici20.velocidadDeCrucero())
+		assert.equals(2, bici20.carga())
+		assert.equals(11.2, bici20.peso())
+		assert.that(not bici20.tieneLuz())
+		assert.equals(0, bici20.cantidadDeAccesoriosLivianos())
+	}	
 }
