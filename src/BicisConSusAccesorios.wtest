@@ -1,11 +1,26 @@
 import bicis.*
 import accesorios.*
+import depositos.*
 
 describe "Test de bicis con accesorios" {
+	// accesorios
+	const farolito = new Farolito()
+	const canasto = new Canasto(volumen = 8)
+	const morralDeBici1 = new MorralDeBici(largo = 21, tieneOjoDeGato = true)
+	const morralDeBici2 = new MorralDeBici(largo = 6, tieneOjoDeGato = false)
 	
+	//bicicletas
+	
+	const bici28 = new Bicicletas(rodado = 28, largo = 150, marca = "Olmo", accesorios = #{farolito})
+	const bici26 = new Bicicletas(rodado = 26, largo = 110, marca = "Legnano", accesorios = #{farolito, canasto, morralDeBici1})
+	const bici20 = new Bicicletas(rodado = 20, largo = 90, marca = "Legnano", accesorios = #{morralDeBici2})
+	
+	//Déposito
+	const deposito = new Depositos(bicicletas = #{bici28, bici26, bici20})
+	const deposito2 = new Depositos(bicicletas = #{bici28, bici26})
+
 
 	test "bicicleta rodado 28" {
-		var bici28 = new Bicicletas(rodado = 28, largo = 150, marca = "Olmo", accesorios = #{farolito})
 		assert.equals(85, bici28.altura())
 		assert.equals(34, bici28.velocidadDeCrucero())
 		assert.equals(0, bici28.carga())
@@ -15,10 +30,6 @@ describe "Test de bicis con accesorios" {
 	}
 	
 	test "bicicleta rodado 26" {
-		var bici26 = new Bicicletas(rodado = 26, largo = 110, marca = "Legnano", accesorios = #{farolito, canasto, morralDeBici})
-		canasto.volumen(8)
-		morralDeBici.largo(21)
-		morralDeBici.tieneOjoDeGato(true)
 		
 		assert.equals(80, bici26.altura())
 		assert.equals(28, bici26.velocidadDeCrucero())
@@ -29,9 +40,6 @@ describe "Test de bicis con accesorios" {
 	}
 	
 	test "bicicleta rodado 20" {
-		var bici20 = new Bicicletas(rodado = 20, largo = 90, marca = "Legnano", accesorios = #{morralDeBici})
-		morralDeBici.largo(6)
-		morralDeBici.tieneOjoDeGato(false)
 		
 		assert.equals(65, bici20.altura())
 		assert.equals(22, bici20.velocidadDeCrucero())
@@ -40,4 +48,17 @@ describe "Test de bicis con accesorios" {
 		assert.that(not bici20.tieneLuz())
 		assert.equals(0, bici20.cantidadDeAccesoriosLivianos())
 	}	
+	
+	test "Depósito" {
+		
+		assert.equals(#{bici28, bici26}, deposito.bicisRapidas() )
+		assert.equals(#{"Olmo", "Legnano"}, deposito.marca() )
+		assert.that(not deposito.esNocturno())
+		assert.that(deposito.tieneBicicletaParaLlevar(10))
+		assert.that(not deposito.tieneBicicletaParaLlevar(50))
+	}
+	
+	test "Depósito nocturno" {
+		assert.that(deposito2.esNocturno())
+	}
 }

@@ -1,10 +1,10 @@
- object farolito {
+class Farolito {
  	method peso() { return 0.5 } // en Kg
  	method carga() { return 0 }
  	method esLuminoso() { return true }
  }
  
-  object canasto {
+class Canasto {
   	var property volumen
   	
  	method peso() { return volumen/10 } 
@@ -12,7 +12,7 @@
  	method esLuminoso() { return false }
  }
  
-  object morralDeBici {
+class MorralDeBici {
   	var property largo
   	var property tieneOjoDeGato
   	
