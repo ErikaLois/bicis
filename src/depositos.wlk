@@ -1,3 +1,4 @@
+
 class Depositos {
 	var property bicicletas = #{}
 	
@@ -9,5 +10,13 @@ class Depositos {
 	
 	method tieneBicicletaParaLlevar(carga) { return bicicletas.any({ bici => bici.carga() > carga }) }
 	
+	method marcaDeLaBiciMasRapida() { return bicicletas.max({ bici => bici.velocidadDeCrucero()}).marca() }
 	
+	method cargaTotalDeLasBicisLargas() { 
+		return bicicletas.filter({ bicis => bicis.largo() > 170}).sum({bicis => bicis.carga() })
+	}
+	
+	method cantidadDeBicisSinAccesorios() { 
+		return bicicletas.count({ bicis => bicis.accesorios().isEmpty()})
+	}
 }

@@ -53,9 +53,11 @@ describe "Test de bicis con accesorios" {
 		
 		assert.equals(#{bici28, bici26}, deposito.bicisRapidas() )
 		assert.equals(#{"Olmo", "Legnano"}, deposito.marca() )
-		assert.that(not deposito.esNocturno())
+		//assert.that(not deposito.esNocturno())
 		assert.that(deposito.tieneBicicletaParaLlevar(10))
 		assert.that(not deposito.tieneBicicletaParaLlevar(50))
+		assert.equals("Olmo", deposito.marcaDeLaBiciMasRapida())
+		assert.equals(0, deposito.cantidadDeBicisSinAccesorios())
 	}
 	
 	test "Depósito nocturno" {
