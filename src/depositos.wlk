@@ -24,7 +24,7 @@ class Depositos {
 		return bicicletas.count({ bicis => bicis.accesorios().isEmpty()})
 	}
 	
-	method sonCompanieras(bicicleta) { 
+	/*method sonCompanieras(bicicleta) { 
 		return bicicletas.filter({ bicis => bicis.marca() == bicicleta.marca() and 
 			(bicis.largo() - bicicleta.largo()).abs() < 10 and
 			bicis != bicicleta
@@ -32,7 +32,12 @@ class Depositos {
 	}
 	
 	//Desafíos
-	method hayCompanieras() { return bicicletas.map({ bici => self.sonCompanieras(bici)}).size() > 0 }
+	method hayCompanieras() { return bicicletas.map({ bici => self.sonCompanieras(bici)})}
+	*/
+	
+	method sonCompanieras(bicicleta) {
+		return bicicletas.filter({ bici => bici.esCompaniera(bicicleta)})
+	}
 }
 
 /*Para agregar un nuevo accesorio es necesario mantener el polimorfismo para que se pueda utilizar al igual que los accesarios ya existentes.

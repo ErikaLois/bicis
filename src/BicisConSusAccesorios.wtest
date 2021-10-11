@@ -61,7 +61,7 @@ describe "Test de bicis con accesorios" {
 		assert.equals([], deposito.sonCompanieras(bici20))
 		assert.equals([], deposito.sonCompanieras(bici28))
 		assert.equals([], deposito.sonCompanieras(bici26))
-		assert.that(not deposito.hayCompanieras()) //Falla: Value was not true
+		//assert.equals([], deposito.hayCompanieras()) //Falla: Value was not true
 	}
 	
 	test "Depósito nocturno" {

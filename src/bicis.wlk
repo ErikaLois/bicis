@@ -33,4 +33,7 @@ class Bicicletas {
 		return accesorios.count({ acc => acc.peso() < 1})
 	}
 	
+	method esCompaniera(otraBici) { 
+		return (self.marca() == otraBici.marca() and (self.largo() - otraBici.largo()).abs() < 10) and self != otraBici
+	}
 }
