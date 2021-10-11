@@ -11,13 +11,13 @@ describe "Test de bicis con accesorios" {
 	
 	//bicicletas
 	
-	const bici28 = new Bicicletas(rodado = 28, largo = 150, marca = "Olmo", accesorios = #{farolito})
-	const bici26 = new Bicicletas(rodado = 26, largo = 110, marca = "Legnano", accesorios = #{farolito, canasto, morralDeBici1})
-	const bici20 = new Bicicletas(rodado = 20, largo = 90, marca = "Legnano", accesorios = #{morralDeBici2})
+	const bici28 = new Bicicletas(rodado = 28, largo = 150, marca = "Olmo", accesorios = [farolito])
+	const bici26 = new Bicicletas(rodado = 26, largo = 110, marca = "Legnano", accesorios = [farolito, canasto, morralDeBici1])
+	const bici20 = new Bicicletas(rodado = 20, largo = 90, marca = "Legnano", accesorios = [morralDeBici2])
 	
 	//Déposito
-	const deposito = new Depositos(bicicletas = #{bici28, bici26, bici20})
-	const deposito2 = new Depositos(bicicletas = #{bici28, bici26})
+	const deposito = new Depositos(bicicletas = [bici28, bici26, bici20])
+	const deposito2 = new Depositos(bicicletas = [bici28, bici26])
 
 
 	test "bicicleta rodado 28" {
@@ -51,14 +51,17 @@ describe "Test de bicis con accesorios" {
 	
 	test "Depósito" {
 		
-		assert.equals(#{bici28, bici26}, deposito.bicisRapidas() )
+		assert.equals([bici28, bici26], deposito.bicisRapidas() )
 		assert.equals(#{"Olmo", "Legnano"}, deposito.marca() )
-		//assert.that(not deposito.esNocturno())
+		assert.that(not deposito.esNocturno())
 		assert.that(deposito.tieneBicicletaParaLlevar(10))
 		assert.that(not deposito.tieneBicicletaParaLlevar(50))
 		assert.equals("Olmo", deposito.marcaDeLaBiciMasRapida())
 		assert.equals(0, deposito.cantidadDeBicisSinAccesorios())
-		assert.equals(#{}, deposito.sonCompanieras(bici20))
+		assert.equals([], deposito.sonCompanieras(bici20))
+		assert.equals([], deposito.sonCompanieras(bici28))
+		assert.equals([], deposito.sonCompanieras(bici26))
+		assert.that(not deposito.hayCompanieras()) //El test dice que debería dar true.
 	}
 	
 	test "Depósito nocturno" {

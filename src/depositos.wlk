@@ -1,6 +1,10 @@
 
 class Depositos {
-	var property bicicletas = #{}
+	var property bicicletas = []
+	
+	method agregarBicicleta(bici) { bicicletas.add(bici) }
+	
+	method eliminarBicicleta(bici) { bicicletas.remove(bici) }
 	
 	method bicisRapidas() { return bicicletas.filter({ bicis => bicis.velocidadDeCrucero() > 25 }) }
 	
@@ -26,8 +30,14 @@ class Depositos {
 			bicis != bicicleta
 		})
 	}
+	
+	//Desafíos
+	method hayCompanieras() { return bicicletas.map({ bici => self.sonCompanieras(bici)}).size() > 0 }
 }
 
 /*Para agregar un nuevo accesorio es necesario mantener el polimorfismo para que se pueda utilizar al igual que los accesarios ya existentes.
  * Es decir, se deben utilizar los mismos métodos que en los otros accesorios. 
  */
+ 
+
+ 

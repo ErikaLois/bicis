@@ -4,7 +4,11 @@ class Bicicletas {
 	var property rodado
 	var property largo
 	var property marca
-	var property accesorios = #{}
+	var property accesorios = []
+	
+	method agregarAccesorio(acc) { accesorios.add(acc) }
+	
+	method eliminarAccesorio(acc) { accesorios.remove(acc) }
 	
 	method altura(){ return rodado * 2.5 + 15 }
 	
@@ -28,4 +32,5 @@ class Bicicletas {
 	method cantidadDeAccesoriosLivianos() {
 		return accesorios.count({ acc => acc.peso() < 1})
 	}
+	
 }
