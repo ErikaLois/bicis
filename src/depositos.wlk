@@ -35,9 +35,12 @@ class Depositos {
 	method hayCompanieras() { return bicicletas.map({ bici => self.sonCompanieras(bici)})}
 	*/
 	
+	//Prueba
 	method sonCompanieras(bicicleta) {
 		return bicicletas.filter({ bici => bici.esCompaniera(bicicleta)})
 	}
+	
+	
 }
 
 /*Para agregar un nuevo accesorio es necesario mantener el polimorfismo para que se pueda utilizar al igual que los accesarios ya existentes.
