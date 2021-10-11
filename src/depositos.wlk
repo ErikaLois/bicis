@@ -19,4 +19,15 @@ class Depositos {
 	method cantidadDeBicisSinAccesorios() { 
 		return bicicletas.count({ bicis => bicis.accesorios().isEmpty()})
 	}
+	
+	method sonCompanieras(bicicleta) { 
+		return bicicletas.filter({ bicis => bicis.marca() == bicicleta.marca() and 
+			(bicis.largo() - bicicleta.largo()).abs() < 10 and
+			bicis != bicicleta
+		})
+	}
 }
+
+/*Para agregar un nuevo accesorio es necesario mantener el polimorfismo para que se pueda utilizar al igual que los accesarios ya existentes.
+ * Es decir, se deben utilizar los mismos métodos que en los otros accesorios. 
+ */
